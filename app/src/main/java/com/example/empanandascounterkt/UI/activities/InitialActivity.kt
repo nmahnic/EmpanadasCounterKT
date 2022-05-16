@@ -1,4 +1,4 @@
-package com.example.empanandascounterkt
+package com.example.empanandascounterkt.UI.activities
 
 import android.content.Intent
 import android.os.Bundle

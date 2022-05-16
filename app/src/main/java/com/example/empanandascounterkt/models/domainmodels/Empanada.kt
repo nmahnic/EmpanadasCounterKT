@@ -1,4 +1,4 @@
-package com.example.empanandascounterkt
+package com.example.empanandascounterkt.models.domainmodels
 
 data class Empanada (
     val name: String,

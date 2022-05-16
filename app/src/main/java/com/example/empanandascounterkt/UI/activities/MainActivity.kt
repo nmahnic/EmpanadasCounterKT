@@ -1,11 +1,10 @@
-package com.example.empanandascounterkt
+package com.example.empanandascounterkt.UI.activities
 
 import android.os.Bundle
 import android.view.Menu
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.NavOptions
 import androidx.navigation.fragment.NavHostFragment
+import com.example.empanandascounterkt.R
 import com.example.empanandascounterkt.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

@@ -1,8 +1,10 @@
-package com.example.empanandascounterkt
+package com.example.empanandascounterkt.adapters.empanadas
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import com.example.empanandascounterkt.R
+import com.example.empanandascounterkt.models.domainmodels.Empanada
 
 class EmpanadasAdapter(
     private var empandasList: MutableList<Empanada>,

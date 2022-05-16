@@ -9,15 +9,21 @@
         <entry key="app/src/main/res/drawable/ic_baseline_exposure_neg_1_24.xml" value="0.1565" />
         <entry key="app/src/main/res/drawable/ic_baseline_exposure_plus_1_24.xml" value="0.1565" />
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1565" />
+        <entry key="app/src/main/res/layout/activity_initial.xml" value="0.325" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11481481481481481" />
         <entry key="app/src/main/res/layout/cat_bottomappbar_content.xml" value="0.325" />
+        <entry key="app/src/main/res/layout/delivery_dialog.xml" value="0.14114583333333333" />
+        <entry key="app/src/main/res/layout/empanada_dialog.xml" value="0.24427083333333333" />
+        <entry key="app/src/main/res/layout/fragment_delivery.xml" value="0.325" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_initial.xml" value="0.1901840490797546" />
         <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.14114583333333333" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.14114583333333333" />
         <entry key="app/src/main/res/layout/fragment_user.xml" value="0.14114583333333333" />
         <entry key="app/src/main/res/layout/input_dialog.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_deliveries.xml" value="0.9" />
         <entry key="app/src/main/res/layout/item_empandas.xml" value="0.42084942084942084" />
+        <entry key="app/src/main/res/layout/item_users.xml" value="0.15885416666666666" />
         <entry key="app/src/main/res/menu/bottom_app_menu.xml" value="0.13953488372093023" />
         <entry key="app/src/main/res/menu/demo_primary.xml" value="0.325" />
         <entry key="app/src/main/res/menu/demo_primary_alternate.xml" value="0.325" />

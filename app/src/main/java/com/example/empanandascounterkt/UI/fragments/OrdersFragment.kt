@@ -1,8 +1,9 @@
-package com.example.empanandascounterkt
+package com.example.empanandascounterkt.UI.fragments
 
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import com.example.empanandascounterkt.R
 import com.example.empanandascounterkt.databinding.FragmentOrdersBinding
 
 
