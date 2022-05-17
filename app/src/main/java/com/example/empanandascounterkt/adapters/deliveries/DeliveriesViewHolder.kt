@@ -3,10 +3,8 @@ package com.example.empanandascounterkt.adapters.deliveries
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.empanandascounterkt.adapters.empanadas.EmpanadasAdapter
 import com.example.empanandascounterkt.databinding.ItemDeliveriesBinding
-import com.example.empanandascounterkt.databinding.ItemEmpandasBinding
-import com.example.empanandascounterkt.models.domainmodels.Delivery
+import com.example.empanandascounterkt.models.domain.Delivery
 
 class DeliveriesViewHolder(view: View): RecyclerView.ViewHolder(view) {
 

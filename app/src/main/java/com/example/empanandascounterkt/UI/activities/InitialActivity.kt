@@ -4,7 +4,9 @@ import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import com.example.empanandascounterkt.databinding.ActivityInitialBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class InitialActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityInitialBinding

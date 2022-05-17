@@ -1,7 +1,7 @@
 package com.example.empanandascounterkt.UI.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.example.empanandascounterkt.models.domainmodels.Delivery
+import com.example.empanandascounterkt.models.domain.Delivery
 
 class DeliveryVM: ViewModel() {
 

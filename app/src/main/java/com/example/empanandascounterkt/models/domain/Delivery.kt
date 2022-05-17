@@ -1,4 +1,4 @@
-package com.example.empanandascounterkt.models.domainmodels
+package com.example.empanandascounterkt.models.domain
 
 data class Delivery(
     val name: String,

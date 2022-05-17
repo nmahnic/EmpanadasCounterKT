@@ -3,9 +3,8 @@ package com.example.empanandascounterkt.adapters.empanadas
 
 import android.view.View
 import androidx.recyclerview.widget.RecyclerView
-import com.example.empanandascounterkt.adapters.empanadas.EmpanadasAdapter
 import com.example.empanandascounterkt.databinding.ItemEmpandasBinding
-import com.example.empanandascounterkt.models.domainmodels.Empanada
+import com.example.empanandascounterkt.models.domain.Empanada
 
 class EmpanadasViewHolder(view: View): RecyclerView.ViewHolder(view) {
 

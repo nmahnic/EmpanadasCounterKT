@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.empanandascounterkt.R
-import com.example.empanandascounterkt.models.domainmodels.Delivery
+import com.example.empanandascounterkt.models.domain.Delivery
 
 class DeliveriesAdapter(
     private var deliveryList: MutableList<Delivery>,

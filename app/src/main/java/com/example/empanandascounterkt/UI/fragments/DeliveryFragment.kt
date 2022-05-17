@@ -13,10 +13,12 @@ import com.example.empanandascounterkt.R
 import com.example.empanandascounterkt.UI.viewmodels.DeliveryVM
 import com.example.empanandascounterkt.adapters.deliveries.DeliveriesAdapter
 import com.example.empanandascounterkt.databinding.FragmentDeliveryBinding
-import com.example.empanandascounterkt.models.domainmodels.Delivery
+import com.example.empanandascounterkt.models.domain.Delivery
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
 
     companion object {

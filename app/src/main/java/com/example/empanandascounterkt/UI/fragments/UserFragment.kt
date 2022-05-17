@@ -8,14 +8,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.empanandascounterkt.R
 import com.example.empanandascounterkt.adapters.users.UsersAdapter
 import com.example.empanandascounterkt.databinding.FragmentUserBinding
-import com.example.empanandascounterkt.models.domainmodels.User
+import com.example.empanandascounterkt.models.domain.User
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class UserFragment : Fragment(R.layout.fragment_user) {
 
     companion object {
         val userList = mutableListOf(
-            User("Mash1", "lo de siempre"),
-            User("Luli","lo que pide lu"),
+            User("Nico"),
+            User("Luli"),
         )
     }
     
