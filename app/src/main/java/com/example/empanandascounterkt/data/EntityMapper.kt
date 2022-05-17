@@ -1,4 +1,4 @@
-package com.example.empanandascounterkt.data.mappers
+package com.example.empanandascounterkt.data
 
 interface EntityMapper<Entity, DomainModel> {
 

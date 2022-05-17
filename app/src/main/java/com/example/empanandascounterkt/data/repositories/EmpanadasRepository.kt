@@ -21,7 +21,7 @@ class EmpanadasRepository @Inject constructor(
         empanadas.forEach{ empanada ->
             val empanadaEntity = EmpanadaEntity(
                 empanada = empanada.name,
-                quantity = empanada.count,
+                quantity = empanada.quantity,
                 orderId = orderId.toInt()
             )
             empanadasDao.insert(empanadaEntity)

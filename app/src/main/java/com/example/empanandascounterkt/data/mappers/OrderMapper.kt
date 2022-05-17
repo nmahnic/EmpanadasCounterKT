@@ -1,5 +1,6 @@
 package com.example.empanandascounterkt.data.mappers
 
+import com.example.empanandascounterkt.data.EntityMapper
 import com.example.empanandascounterkt.models.domain.Order
 import com.example.empanandascounterkt.models.domain.User
 import com.example.empanandascounterkt.models.room.OrderEntity

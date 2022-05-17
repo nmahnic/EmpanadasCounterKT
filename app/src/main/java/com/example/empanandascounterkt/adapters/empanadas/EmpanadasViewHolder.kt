@@ -13,17 +13,17 @@ class EmpanadasViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     fun render(empanada: Empanada, position: Int, onClickListener: EmpanadasAdapter.BtnListener){
         binding.tvName.text = empanada.name
-        binding.tvCounter.text = empanada.count.toString()
+        binding.tvCounter.text = empanada.quantity.toString()
 
         binding.btnMinus.setOnClickListener {
-            empanada.count = empanada.count - 1
-            binding.tvCounter.text = empanada.count.toString()
+            empanada.quantity = empanada.quantity - 1
+            binding.tvCounter.text = empanada.quantity.toString()
             onClickListener.onBtnClick( empanada,position )
         }
 
         binding.btnPlus.setOnClickListener {
-            empanada.count = empanada.count + 1
-            binding.tvCounter.text = empanada.count.toString()
+            empanada.quantity = empanada.quantity + 1
+            binding.tvCounter.text = empanada.quantity.toString()
             onClickListener.onBtnClick( empanada, position )
         }
     }

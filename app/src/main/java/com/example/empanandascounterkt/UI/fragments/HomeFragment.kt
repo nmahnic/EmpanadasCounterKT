@@ -59,7 +59,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val onItemSelected = object :  EmpanadasAdapter.BtnListener {
         override fun onBtnClick(empanada: Empanada, position: Int) {
             Log.d("NM", "empanada => ${empanada}")
-            if(empanada.count <= 0) {
+            if(empanada.quantity <= 0) {
                 empanadaList.remove(empanada)
                 adapter.notifyItemRemoved(position)
             }
