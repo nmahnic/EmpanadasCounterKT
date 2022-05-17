@@ -5,6 +5,7 @@ import androidx.room.Room
 import com.example.empanandascounterkt.data.AppDatabase
 import com.example.empanandascounterkt.data.dao.EmpanadasDao
 import com.example.empanandascounterkt.data.dao.OrdersDao
+import com.example.empanandascounterkt.data.dao.UsersDao
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -38,6 +39,12 @@ object RoomModule {
     @Provides
     fun provideOrdersDAO(appDatabase: AppDatabase): OrdersDao {
         return appDatabase.orderDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideUsersDAO(appDatabase: AppDatabase): UsersDao {
+        return appDatabase.usersDao()
     }
 
 

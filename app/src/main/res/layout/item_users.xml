@@ -22,16 +22,29 @@
         tools:text="Carne cortada a Cuchillo" />
 
     <TextView
-        android:id="@+id/tvComment"
+        android:id="@+id/tvDate"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:ellipsize="end"
         android:maxEms="15"
         android:maxLines="1"
-        tools:text="Aranguren 123"
+        android:textStyle="italic"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:text="Hoy" />
+
+    <TextView
+        android:id="@+id/tvAddress"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:maxEms="15"
+        android:maxLines="1"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvName"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvDate"
+        tools:text="Aranguren 123" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

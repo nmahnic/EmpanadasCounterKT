@@ -29,9 +29,10 @@
         <entry key="app/src/main/res/layout/item_deliveries.xml" value="0.9" />
         <entry key="app/src/main/res/layout/item_empandas.xml" value="0.42084942084942084" />
         <entry key="app/src/main/res/layout/item_orders.xml" value="0.75" />
-        <entry key="app/src/main/res/layout/item_users.xml" value="0.15885416666666666" />
+        <entry key="app/src/main/res/layout/item_users.xml" value="0.75" />
         <entry key="app/src/main/res/layout/save_empanada_dialog.xml" value="0.325" />
         <entry key="app/src/main/res/layout/sub_item_empandas.xml" value="0.325" />
+        <entry key="app/src/main/res/layout/user_dialog.xml" value="0.2390625" />
         <entry key="app/src/main/res/menu/bottom_app_menu.xml" value="0.13953488372093023" />
         <entry key="app/src/main/res/menu/demo_primary.xml" value="0.325" />
         <entry key="app/src/main/res/menu/demo_primary_alternate.xml" value="0.325" />
