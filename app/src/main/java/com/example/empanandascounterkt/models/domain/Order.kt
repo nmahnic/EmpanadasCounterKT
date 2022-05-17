@@ -6,5 +6,6 @@ class Order(
     val user: User,
     val date: Date,
     val comment: String,
-    val empanadaList: MutableList<Empanada> = mutableListOf(),
+    var empanadaList: MutableList<Empanada> = mutableListOf(),
+    val id: Int = 0,
 )

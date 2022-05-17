@@ -24,8 +24,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
     companion object {
         val empanadaList = mutableListOf(
-            Empanada("Carne", 1, ""),
-            Empanada("Jamon y queso", 1, ""),
+            Empanada("Carne", 1, ),
+            Empanada("Jamon y queso", 1, ),
         )
     }
 
@@ -92,7 +92,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 val empanadaName = d.findViewById<TextInputLayout>(R.id.empanadaName)
                 empanadaName.editText?.let { empanadaName ->
                     if(empanadaName.text.toString().isNotEmpty()) {
-                        empanadaList.add(Empanada(empanadaName.text.toString().trim(), 1, ""))
+                        empanadaList.add(Empanada(empanadaName.text.toString().trim(), 1))
                         adapter.notifyItemInserted(empanadaList.size - 1)
                     }
                 }

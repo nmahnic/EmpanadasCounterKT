@@ -17,6 +17,7 @@ import com.example.empanandascounterkt.models.domain.Order
 import com.example.empanandascounterkt.models.domain.User
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.*
+import kotlinx.coroutines.flow.collect
 import java.util.*
 
 @AndroidEntryPoint
@@ -26,14 +27,14 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         val orderList = mutableListOf(
             Order(User("Nico"), Date(), "comentario 1",
                 mutableListOf(
-                    Empanada("Carne", 1, ""),
-                    Empanada("Jamon y Queso", 1, ""),
+                    Empanada("Carne", 1 ),
+                    Empanada("Jamon y Queso", 1 ),
                 )
             ),
             Order(User("Luli"), Date(), "comentario 2",
                 mutableListOf(
-                    Empanada("Carne", 1, ""),
-                    Empanada("Verdura", 2, ""),
+                    Empanada("Carne", 1),
+                    Empanada("Verdura", 2),
                 )
             )
         )
@@ -59,21 +60,21 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
 
         binding.rvOrders.layoutManager = LinearLayoutManager(requireContext())
         adapter = OrdersAdapter(onItemSelected)
-//        adapter!!.setList(ordersTemp)
-        adapter!!.setList(orderList)
+        adapter!!.setList(ordersTemp)
+//        adapter!!.setList(orderList)
         binding.rvOrders.adapter = adapter
 
-//        dispatcherContext.launch{
-//            dispatcherContext.async{
-//                orderVM.getAllOrders().collect { orders ->
-//                    orders.forEach{
-//                        Log.d("NM", "order => ${it.user} ${it.date}")
-//                        ordersTemp.add(0, it)
-//                        adapter!!.notifyItemChanged(0)
-//                    }
-//                }
-//            }.await()
-//        }
+        dispatcherContext.launch{
+            dispatcherContext.async{
+                orderVM.getAllOrders().collect { orders ->
+                    orders.forEach{
+                        Log.d("NM", "order => ${it.user} ${it.date}")
+                        ordersTemp.add(0, it)
+                        adapter!!.notifyItemChanged(0)
+                    }
+                }
+            }.await()
+        }
 
         binding.floatingButton.setOnClickListener(onFloatingClicked)
         binding.floatingEditButton.setOnClickListener(onFloatingEditClicked)

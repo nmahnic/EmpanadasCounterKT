@@ -10,9 +10,10 @@ class OrderMapper @Inject constructor() : EntityMapper<OrderEntity, Order> {
 
     override fun mapFromEntity(entity: OrderEntity): Order {
         return Order(
+            id = entity.id,
             user = User(entity.name),
             date = Date(entity.date),
-            comment = entity.comment
+            comment = entity.comment,
         )
     }
 
