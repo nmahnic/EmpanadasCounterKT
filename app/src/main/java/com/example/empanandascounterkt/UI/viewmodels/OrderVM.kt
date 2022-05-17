@@ -10,7 +10,7 @@ class OrderVM @Inject constructor(
     private val orderRepo: OrdersRepository
 ): ViewModel() {
 
-    var variable: Boolean = false
+    var floatingButtonStatus: Boolean = false
 
 
     suspend fun getAllOrders() = orderRepo.getAllOrders()

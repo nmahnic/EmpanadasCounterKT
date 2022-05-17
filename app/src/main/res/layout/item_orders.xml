@@ -11,10 +11,10 @@
         android:id="@+id/btnRemove"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_red_top_rounded"
         android:src="@drawable/ic_remove_24dp"
         android:visibility="invisible"
-        android:background="@drawable/btn_red_top_rounded"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDate"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -22,11 +22,34 @@
         android:id="@+id/btnAdd"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/btn_green_top_rounded"
         android:src="@drawable/ic_add_24dp"
         android:visibility="visible"
-        android:background="@drawable/btn_green_top_rounded"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDate"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+    android:id="@+id/btnDelete"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_marginEnd="10dp"
+    android:background="@drawable/btn_red_top_rounded"
+    android:src="@drawable/ic_baseline_delete_24"
+    android:visibility="invisible"
+    app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageButton
+        android:id="@+id/btnExpandable"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_marginEnd="10dp"
+        android:src="@drawable/ic_baseline_keyboard_arrow_down_24"
+        android:visibility="visible"
+        app:layout_constraintBottom_toBottomOf="@+id/tvDate"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
@@ -62,7 +85,7 @@
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:textStyle="italic"
-        android:visibility="gone"
+        android:visibility="visible"
         app:layout_constraintStart_toStartOf="@+id/tvOrder"
         app:layout_constraintTop_toBottomOf="@+id/tvName"
         tools:text="Carne cortada a " />
@@ -72,9 +95,17 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvOrder"
         app:layout_constraintTop_toBottomOf="@+id/tvComment"
         tools:text="18:25 23/12/22" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvSubEmpanadas"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tvDate" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

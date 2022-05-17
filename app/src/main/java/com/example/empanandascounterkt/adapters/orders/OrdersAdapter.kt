@@ -10,7 +10,7 @@ class OrdersAdapter(
     private val itemListener: ItemListener
 ) : RecyclerView.Adapter<OrdersViewHolder>() {
 
-    private var userList: MutableList<Order> = mutableListOf()
+    private var orderList: MutableList<Order> = mutableListOf()
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): OrdersViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context )
@@ -18,14 +18,14 @@ class OrdersAdapter(
     }
 
     override fun onBindViewHolder(holder: OrdersViewHolder, position: Int) {
-        val item = userList[position]
+        val item = orderList[position]
         holder.render(item, position, itemListener)
     }
 
-    override fun getItemCount(): Int = userList.size
+    override fun getItemCount(): Int = orderList.size
 
-    fun setList(userList: MutableList<Order>){
-        this.userList = userList
+    fun setList(orderList: MutableList<Order>){
+        this.orderList = orderList
     }
 
     interface ItemListener{
