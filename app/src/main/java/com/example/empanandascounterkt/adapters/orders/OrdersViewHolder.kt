@@ -16,7 +16,7 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
     private var binding = ItemOrdersBinding.bind(view)
 
 
-    fun render(order: Order, position: Int, onClickListener: OrdersAdapter.ItemListener){
+    fun render(order: Order, position: Int, onClickListener: OrdersAdapter.ItemListener, deleteBtnStatus: Boolean){
         var adapter : SubEmpanadasAdapter? = null
         var btnExpandableStatus = false
 
@@ -30,6 +30,14 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
         adapter = SubEmpanadasAdapter()
         adapter.setList(order.empanadaList)
         binding.rvSubEmpanadas.adapter = adapter
+
+        if(deleteBtnStatus){
+            binding.btnDelete.visibility = View.VISIBLE
+            binding.btnExpandable.visibility = View.INVISIBLE
+        } else{
+            binding.btnDelete.visibility = View.INVISIBLE
+            binding.btnExpandable.visibility = View.VISIBLE
+        }
 
         binding.btnExpandable.setOnClickListener {
             if(!btnExpandableStatus){
@@ -53,6 +61,10 @@ class OrdersViewHolder(view: View): RecyclerView.ViewHolder(view) {
             onClickListener.onRemoveBtnClick( order, position )
             binding.btnRemove.visibility = View.INVISIBLE
             binding.btnAdd.visibility = View.VISIBLE
+        }
+
+        binding.btnDelete.setOnClickListener {
+            onClickListener.onDeleteBtnClick( order, position )
         }
 
         itemView.setOnClickListener {

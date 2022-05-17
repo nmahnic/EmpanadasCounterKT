@@ -23,23 +23,6 @@ import java.util.*
 @AndroidEntryPoint
 class OrdersFragment : Fragment(R.layout.fragment_orders) {
 
-    companion object {
-        val orderList = mutableListOf(
-            Order(User("Nico"), Date(), "comentario 1",
-                mutableListOf(
-                    Empanada("Carne", 1 ),
-                    Empanada("Jamon y Queso", 1 ),
-                )
-            ),
-            Order(User("Luli"), Date(), "comentario 2",
-                mutableListOf(
-                    Empanada("Carne", 1),
-                    Empanada("Verdura", 2),
-                )
-            )
-        )
-    }
-
     private val rotateOpen: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_open_anim) }
     private val rotateClose: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.rotate_close_anim) }
     private val fromBottom: Animation by lazy { AnimationUtils.loadAnimation(requireContext(), R.anim.from_bottom_anim) }
@@ -61,7 +44,6 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         binding.rvOrders.layoutManager = LinearLayoutManager(requireContext())
         adapter = OrdersAdapter(onItemSelected)
         adapter!!.setList(ordersTemp)
-//        adapter!!.setList(orderList)
         binding.rvOrders.adapter = adapter
 
         dispatcherContext.launch{
@@ -92,11 +74,17 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     }
 
     private val onFloatingDeliveryClicked = object : View.OnClickListener{
-        override fun onClick(p0: View?) { Log.d("NM", "order DELIVERY BUTTON") }
+        override fun onClick(p0: View?) {
+            Log.d("NM", "order DELIVERY BUTTON")
+        }
     }
 
     private val onFloatingEditClicked = object : View.OnClickListener{
-        override fun onClick(p0: View?) { Log.d("NM", "order EDIT BUTTON") }
+        override fun onClick(p0: View?) {
+            Log.d("NM", "order EDIT BUTTON")
+            adapter!!.toggleDeleteButton()
+            adapter!!.notifyDataSetChanged()
+        }
     }
 
     private val onItemSelected = object :  OrdersAdapter.ItemListener {
@@ -106,6 +94,10 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
 
         override fun onRemoveBtnClick(order: Order, position: Int) {
             Log.d("NM", "order REMOVE=> ${order.user} ${order.date}")
+        }
+
+        override fun onDeleteBtnClick(order: Order, position: Int) {
+            Log.d("NM", "order DELETE=> ${order.user} ${order.date}")
         }
 
         override fun onItemClick(order: Order, position: Int) {
