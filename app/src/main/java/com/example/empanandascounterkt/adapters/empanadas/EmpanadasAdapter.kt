@@ -18,17 +18,13 @@ class EmpanadasAdapter(
 
     override fun onBindViewHolder(holder: EmpanadasViewHolder, position: Int) {
         val item = empandasList[position]
-        holder.render(item, position, btnListener)
+        holder.render(item, btnListener)
     }
 
     override fun getItemCount(): Int = empandasList.size
 
-    fun setList(empandasList: List<Empanada>){
-        this.empandasList = empandasList as MutableList<Empanada>
-    }
-
     interface BtnListener{
-        fun onBtnClick(empanada: Empanada, position: Int)
+        fun onBtnClick(empanada: Empanada)
     }
 
 }

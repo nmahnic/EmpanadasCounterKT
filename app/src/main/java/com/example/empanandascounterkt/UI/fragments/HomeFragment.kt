@@ -57,11 +57,13 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private val onItemSelected = object :  EmpanadasAdapter.BtnListener {
-        override fun onBtnClick(empanada: Empanada, position: Int) {
+        override fun onBtnClick(empanada: Empanada) {
             Log.d("NM", "empanada => ${empanada}")
+            Log.d("NM", "empanadaList => ${empanadaList}")
             if(empanada.quantity <= 0) {
+                val pos = empanadaList.indexOf(empanada)
                 empanadaList.remove(empanada)
-                adapter.notifyItemRemoved(position)
+                adapter.notifyItemRemoved(pos)
             }
         }
     }
