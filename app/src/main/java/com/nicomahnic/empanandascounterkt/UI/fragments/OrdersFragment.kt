@@ -31,7 +31,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     private val job = Job()
     private val dispatcherContext = CoroutineScope(Dispatchers.Main + job)
     private lateinit var binding : FragmentOrdersBinding
-    private var adapter: OrdersAdapter? = null
+    private lateinit var adapter: OrdersAdapter
     private lateinit var v: View
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -44,7 +44,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
 
         binding.rvOrders.layoutManager = LinearLayoutManager(requireContext())
         adapter = OrdersAdapter(onItemSelected)
-        adapter!!.setList(ordersTemp)
+        adapter.setList(ordersTemp)
         binding.rvOrders.adapter = adapter
 
         dispatcherContext.launch{
@@ -53,7 +53,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
                     orders.forEach{
                         Log.d("NM", "order => ${it.user} ${it.date}")
                         ordersTemp.add(0, it)
-                        adapter!!.notifyItemChanged(0)
+                        adapter.notifyItemChanged(0)
                     }
                 }
             }.await()
@@ -89,8 +89,8 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     private val onFloatingEditClicked = object : View.OnClickListener{
         override fun onClick(p0: View?) {
             Log.d("NM", "order EDIT BUTTON")
-            adapter!!.toggleDeleteButton()
-            adapter!!.notifyDataSetChanged()
+            adapter.toggleDeleteButton()
+            adapter.notifyDataSetChanged()
         }
     }
 
@@ -103,11 +103,15 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         }
 
         override fun onDeleteBtnClick(order: Order, position: Int) {
-            Log.d("NM", "order DELETE=> ${order.user} ${order.date}")
+            Log.d("NM", "order DELETE => ${order.user} ${order.date}")
+            orderVM.deleteOrder(order.id)
+            val index = ordersTemp.indexOf(order)
+            ordersTemp.remove(order)
+            adapter.notifyItemRemoved(index)
         }
 
         override fun onItemClick(order: Order, position: Int) {
-            Log.d("NM", "order ITEM=> ${order.user} ${order.date}")
+            Log.d("NM", "order ITEM => ${order.user} ${order.date}")
         }
     }
 
