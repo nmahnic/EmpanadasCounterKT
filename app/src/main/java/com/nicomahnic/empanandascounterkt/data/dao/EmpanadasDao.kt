@@ -18,4 +18,7 @@ interface EmpanadasDao {
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     suspend fun insert(empanada: EmpanadaEntity)
 
+    @Query("DELETE FROM Empanadas WHERE orderId = :orderId")
+    suspend fun deleteByOrderId(orderId: Int)
+
 }

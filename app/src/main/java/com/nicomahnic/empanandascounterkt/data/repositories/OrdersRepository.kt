@@ -32,6 +32,7 @@ class OrdersRepository @Inject constructor(
 
     suspend fun deleteOrder(id: Int){
         ordersDao.deleteById(id)
+        empanadasDao.deleteByOrderId(id)
     }
 
 }
