@@ -2,14 +2,16 @@ package com.nicomahnic.empanandascounterkt.UI.viewmodels
 
 import androidx.lifecycle.ViewModel
 import com.nicomahnic.empanandascounterkt.models.domain.Delivery
+import com.nicomahnic.empanandascounterkt.models.domain.Order
 
 class DeliveryVM: ViewModel() {
 
-    fun createMessage(delivery: Delivery, paymentMethod: String) : String {
+    fun createMessage(paymentMethod: String, order: Order) : String {
+
         var text = "Buenas noches queria hacerte un pedido para *Aranguren 168*\n"
-        text += "2x Carne\n"
-        text += "2x Jamon y queso\n"
-        text += "2x Humita\n"
+        order.empanadaList.forEach {
+            text += "${it.quantity}x ${it.name}\n"
+        }
         text += "Pago con ${paymentMethod}, gracias!\n"
 
         return text

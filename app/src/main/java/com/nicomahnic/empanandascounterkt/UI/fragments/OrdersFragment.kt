@@ -7,6 +7,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.empanandascounterkt.R
 import com.nicomahnic.empanandascounterkt.UI.viewmodels.OrderVM
@@ -31,10 +32,12 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     private val dispatcherContext = CoroutineScope(Dispatchers.Main + job)
     private lateinit var binding : FragmentOrdersBinding
     private var adapter: OrdersAdapter? = null
+    private lateinit var v: View
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        v = view
         binding = FragmentOrdersBinding.bind(view)
         orderVM.floatingButtonStatus = false
         Thread.sleep(100)
@@ -75,8 +78,10 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         override fun onClick(p0: View?) {
             Log.d("NM", "order DELIVERY BUTTON")
             if(selectedOrdersTemp.isNotEmpty()){
-                val firstOrder = selectedOrdersTemp[0]
-                Log.d("NM", "order DELIVERY => ${firstOrder}")
+                val order = selectedOrdersTemp[0]
+                Log.d("NM", "order DELIVERY => ${order}")
+                val action = OrdersFragmentDirections.actionOrdersFragmentToDeliveryFragment(order)
+                v.findNavController().navigate(action)
             }
         }
     }

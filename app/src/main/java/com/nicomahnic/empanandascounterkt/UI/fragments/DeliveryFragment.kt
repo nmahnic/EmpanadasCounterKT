@@ -8,6 +8,7 @@ import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.empanandascounterkt.R
 import com.nicomahnic.empanandascounterkt.UI.viewmodels.DeliveryVM
@@ -16,6 +17,7 @@ import com.nicomahnic.empanandascounterkt.databinding.FragmentDeliveryBinding
 import com.nicomahnic.empanandascounterkt.models.domain.Delivery
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import com.nicomahnic.empanandascounterkt.models.domain.Order
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -31,11 +33,21 @@ class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
     private val viewModel: DeliveryVM by viewModels()
     private lateinit var binding : FragmentDeliveryBinding
     private lateinit var adapter: DeliveriesAdapter
+    private val args: DeliveryFragmentArgs by navArgs()
+
+    private var order: Order? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentDeliveryBinding.bind(view)
+
+        args.order?.let {
+            Log.d("NM", "DELIVERY => NAV ARGS $it")
+            order = it
+        } ?: run {
+            Log.d("NM", "DELIVERY => NO NAV ARGS")
+        }
 
         initRecyclerView()
 
@@ -53,7 +65,9 @@ class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
     private val onItemSelected = object :  DeliveriesAdapter.ItemListener {
         override fun onBtnClick(delivery: Delivery, position: Int) {
             Log.d("NM", "delivery => ${delivery}")
-            paymentMethodDeliveryDialog(delivery)
+            order?.let {
+                paymentMethodDeliveryDialog(delivery, it)
+            }
         }
     }
 
@@ -63,7 +77,7 @@ class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
         }
     }
 
-    fun paymentMethodDeliveryDialog(delivery: Delivery){
+    fun paymentMethodDeliveryDialog(delivery: Delivery, order: Order){
         MaterialAlertDialogBuilder(
             requireContext(),
             com.google.android.material.R.style.MaterialAlertDialog_Material3
@@ -74,19 +88,18 @@ class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
                 val d = dialog as Dialog
                 val edtPaymentMethod = d.findViewById<TextInputLayout>(R.id.edtPaymentMethod)
                 edtPaymentMethod.editText?.let { edtPaymentMethod ->
-                    val paymentMethod = edtPaymentMethod.text.toString().trim()
-                    if (paymentMethod.isNotEmpty()) {
-                        sendWhatsappMessage(delivery, paymentMethod)
-                    }
+                    var paymentMethod = edtPaymentMethod.text.toString().trim()
+                    if (paymentMethod.isEmpty()) { paymentMethod = "Efectivo"}
+                    sendWhatsappMessage(delivery, paymentMethod, order)
                 }
                 dialog.dismiss()
             }
             .show()
     }
 
-    private fun sendWhatsappMessage(delivery: Delivery, paymentMethod: String){
+    private fun sendWhatsappMessage(delivery: Delivery, paymentMethod: String, order: Order){
         try {
-            val message = viewModel.createMessage(delivery, paymentMethod)
+            val message = viewModel.createMessage(paymentMethod, order)
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("http://api.whatsapp.com/send?phone=+54 9 ${delivery.whatsappNumber}&text=$message")
             startActivity(intent)
