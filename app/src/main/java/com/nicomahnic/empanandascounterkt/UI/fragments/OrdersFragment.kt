@@ -78,7 +78,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         override fun onClick(p0: View?) {
             Log.d("NM", "order DELIVERY BUTTON")
             if(selectedOrdersTemp.isNotEmpty()){
-                val order = selectedOrdersTemp[0]
+                val order = orderVM.combineOrders(selectedOrdersTemp)
                 Log.d("NM", "order DELIVERY => ${order}")
                 val action = OrdersFragmentDirections.actionOrdersFragmentToDeliveryFragment(order)
                 v.findNavController().navigate(action)
