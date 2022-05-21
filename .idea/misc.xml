@@ -19,12 +19,12 @@
         <entry key="app/src/main/res/layout/cat_bottomappbar_content.xml" value="0.325" />
         <entry key="app/src/main/res/layout/delivery_dialog.xml" value="0.14114583333333333" />
         <entry key="app/src/main/res/layout/empanada_dialog.xml" value="0.24427083333333333" />
-        <entry key="app/src/main/res/layout/fragment_delivery.xml" value="0.325" />
+        <entry key="app/src/main/res/layout/fragment_delivery.xml" value="0.22" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.32083333333333336" />
         <entry key="app/src/main/res/layout/fragment_initial.xml" value="0.1901840490797546" />
-        <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.14114583333333333" />
+        <entry key="app/src/main/res/layout/fragment_orders.xml" value="0.33" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.14114583333333333" />
-        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.14114583333333333" />
+        <entry key="app/src/main/res/layout/fragment_user.xml" value="0.22" />
         <entry key="app/src/main/res/layout/input_dialog.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_deliveries.xml" value="0.9" />
         <entry key="app/src/main/res/layout/item_empandas.xml" value="0.42084942084942084" />
