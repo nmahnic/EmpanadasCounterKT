@@ -25,8 +25,8 @@ class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
 
     companion object {
         val deliveryList = mutableListOf(
-            Delivery("Il nonno Pibe", "Avellaneda 96, C1405, CABA", "11 6708-9981"),
-            Delivery("Gefahr", "Avellaneda 201, C1405, CABA", "11 6708-9981"),
+            Delivery("Il nonno Pibe", "Avellaneda 96, C1405, CABA", "+54 9 11 6708-9981"),
+            Delivery("Gefahr", "Avellaneda 201, C1405, CABA", "+54 9 11 6708-9981"),
         )
     }
 
@@ -101,7 +101,7 @@ class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
         try {
             val message = viewModel.createMessage(paymentMethod, order)
             val intent = Intent(Intent.ACTION_VIEW)
-            intent.data = Uri.parse("http://api.whatsapp.com/send?phone=+54 9 ${delivery.whatsappNumber}&text=$message")
+            intent.data = Uri.parse("http://api.whatsapp.com/send?phone=${delivery.whatsappNumber}&text=$message")
             startActivity(intent)
         } catch (e: Exception) {
             e.printStackTrace()
