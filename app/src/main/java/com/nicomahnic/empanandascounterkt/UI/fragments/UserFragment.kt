@@ -59,7 +59,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
     }
 
     private val onItemSelected = object :  UsersAdapter.ItemListener {
-        override fun onBtnClick(user: User, position: Int) {
+        override fun onBtnClick(user: User) {
             Log.d("NM", "user => ${user}")
         }
     }

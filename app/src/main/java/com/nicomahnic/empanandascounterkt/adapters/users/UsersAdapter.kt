@@ -18,13 +18,13 @@ class UsersAdapter(
 
     override fun onBindViewHolder(holder: UsersViewHolder, position: Int) {
         val item = userList[position]
-        holder.render(item, position, itemListener)
+        holder.render(item, itemListener)
     }
 
     override fun getItemCount(): Int = userList.size
 
     interface ItemListener{
-        fun onBtnClick(user: User, position: Int)
+        fun onBtnClick(user: User)
     }
 
 }

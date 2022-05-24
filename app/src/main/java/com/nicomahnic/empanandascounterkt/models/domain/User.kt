@@ -9,5 +9,6 @@ data class User (
     val id: Int = 0,
     val name: String = "",
     val address: String = "",
-    val date: Date = Date()
+    val date: Date = Date(),
+    var selected: Boolean = false
 ) : Parcelable

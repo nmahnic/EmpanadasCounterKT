@@ -4,18 +4,13 @@ import android.app.Dialog
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.nicomahnic.empanandascounterkt.R
 import com.nicomahnic.empanandascounterkt.UI.viewmodels.HomeVM
 import com.nicomahnic.empanandascounterkt.adapters.users.UsersAdapter
-import com.nicomahnic.empanandascounterkt.data.repositories.OrdersRepository
-import com.nicomahnic.empanandascounterkt.data.repositories.UsersRepository
 import com.nicomahnic.empanandascounterkt.databinding.SaveEmpanadaDialogBinding
 import com.nicomahnic.empanandascounterkt.models.domain.Empanada
 import com.nicomahnic.empanandascounterkt.models.domain.User
@@ -71,9 +66,11 @@ class SaveEmpanadasDialogFragment (
     }
 
     private val onItemSelected = object :  UsersAdapter.ItemListener {
-        override fun onBtnClick(user: User, position: Int) {
+        override fun onBtnClick(user: User) {
             Log.d("NM", "DIALOG user => ${user}")
             selectedUser = user
+            usersTemp.forEach { it.selected = (it == user) }
+            adapter.notifyDataSetChanged()
         }
     }
 
