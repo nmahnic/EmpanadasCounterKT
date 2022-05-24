@@ -14,7 +14,7 @@ class UsersViewHolder(view: View): RecyclerView.ViewHolder(view) {
     fun render(user: User, position: Int, onClickListener: UsersAdapter.ItemListener){
         binding.tvName.text = user.name
         binding.tvDate.text = Utils.parseTimestamp(user.date)
-        binding.tvAddress.text = Utils.parseTimestamp(user.date)
+        binding.tvAddress.text = user.address
 
         itemView.setOnClickListener {
             onClickListener.onBtnClick( user ,position )

@@ -7,6 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/ivProfile"
+        android:layout_width="35dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_baseline_emoji_people_24"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
@@ -17,7 +26,7 @@
         android:maxLines="1"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivProfile"
         app:layout_constraintTop_toTopOf="parent"
         tools:text="Carne cortada a Cuchillo" />
 

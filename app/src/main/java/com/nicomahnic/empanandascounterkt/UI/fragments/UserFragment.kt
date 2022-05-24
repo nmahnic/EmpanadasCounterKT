@@ -7,11 +7,11 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.nicomahnic.empanandascounterkt.R
 import com.nicomahnic.empanandascounterkt.UI.viewmodels.UserVM
 import com.nicomahnic.empanandascounterkt.adapters.users.UsersAdapter
 import com.nicomahnic.empanandascounterkt.databinding.FragmentUserBinding
-import com.nicomahnic.empanandascounterkt.models.domain.Empanada
 import com.nicomahnic.empanandascounterkt.models.domain.User
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
@@ -22,10 +22,7 @@ import kotlinx.coroutines.flow.collect
 @AndroidEntryPoint
 class UserFragment : Fragment(R.layout.fragment_user) {
 
-    companion object {
-        var usersTemp = mutableListOf<User>()
-    }
-
+    private var usersTemp = mutableListOf<User>()
     private val userVM: UserVM by viewModels()
     private val job = Job()
     private val dispatcherContext = CoroutineScope(Dispatchers.Main + job)
@@ -79,9 +76,12 @@ class UserFragment : Fragment(R.layout.fragment_user) {
             .setPositiveButton("Aceptar") { dialog, _ ->
                 val d = dialog as Dialog
                 val userName = d.findViewById<TextInputLayout>(R.id.userName)
+
                 userName.editText?.let { userName ->
                     if(userName.text.toString().isNotEmpty()) {
-                        usersTemp.add(User(userName.text.toString().trim(), ))
+                        val user = User( name = userName.text.toString().trim(), address = "Aranguren 168")
+                        usersTemp.add(user)
+                        userVM.insertUser(user)
                         adapter.notifyItemInserted(usersTemp.size - 1)
                     }
                 }

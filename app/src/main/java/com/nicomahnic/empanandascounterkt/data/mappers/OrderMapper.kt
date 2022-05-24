@@ -12,7 +12,7 @@ class OrderMapper @Inject constructor() : EntityMapper<OrderEntity, Order> {
     override fun mapFromEntity(entity: OrderEntity): Order {
         return Order(
             id = entity.id,
-            user = User(entity.name),
+            user = User(entity.userId),
             date = Date(entity.date),
             comment = entity.comment,
             selected = false,
@@ -21,7 +21,7 @@ class OrderMapper @Inject constructor() : EntityMapper<OrderEntity, Order> {
 
     override fun mapToEntity(domainModel: Order?): OrderEntity {
         return OrderEntity(
-            name = domainModel!!.user.name,
+            userId = domainModel!!.user.id,
             comment = domainModel.comment,
             date = domainModel.date.time
         )

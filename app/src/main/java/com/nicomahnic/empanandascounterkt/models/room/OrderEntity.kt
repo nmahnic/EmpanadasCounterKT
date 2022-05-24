@@ -8,7 +8,7 @@ import java.util.*
 data class OrderEntity(
     @PrimaryKey(autoGenerate = true)
     val id: Int = 0,
-    val name: String = "",
+    val userId: Int = 0,
     val comment: String = "",
     val date: Long
 )
