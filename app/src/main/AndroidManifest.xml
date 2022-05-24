@@ -3,7 +3,7 @@
     package="com.nicomahnic.empanandascounterkt">
 
     <application
-        android:name=".UI.EmpanadasApp"
+        android:name=".ui.EmpanadasApp"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -12,7 +12,7 @@
         android:theme="@style/Theme.Material3.DayNight.NoActionBar">
 
         <activity
-            android:name=".UI.activities.InitialActivity"
+            android:name=".ui.activities.InitialActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,7 +22,7 @@
         </activity>
 
         <activity
-            android:name=".UI.activities.MainActivity"
+            android:name=".ui.activities.MainActivity"
             android:exported="true">
         </activity>
 

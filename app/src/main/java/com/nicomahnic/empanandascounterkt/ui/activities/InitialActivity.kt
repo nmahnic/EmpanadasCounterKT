@@ -1,4 +1,4 @@
-package com.nicomahnic.empanandascounterkt.UI.activities
+package com.nicomahnic.empanandascounterkt.ui.activities
 
 import android.content.Intent
 import android.os.Bundle

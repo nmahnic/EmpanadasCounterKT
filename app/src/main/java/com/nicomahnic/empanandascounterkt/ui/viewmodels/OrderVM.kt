@@ -1,4 +1,4 @@
-package com.nicomahnic.empanandascounterkt.UI.viewmodels
+package com.nicomahnic.empanandascounterkt.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope

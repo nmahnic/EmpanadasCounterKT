@@ -1,4 +1,4 @@
-package com.nicomahnic.empanandascounterkt.UI.fragments
+package com.nicomahnic.empanandascounterkt.ui.fragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -9,15 +9,13 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.nicomahnic.empanandascounterkt.R
-import com.nicomahnic.empanandascounterkt.UI.viewmodels.HomeVM
+import com.nicomahnic.empanandascounterkt.ui.viewmodels.HomeVM
 import com.nicomahnic.empanandascounterkt.adapters.users.UsersAdapter
 import com.nicomahnic.empanandascounterkt.databinding.SaveEmpanadaDialogBinding
 import com.nicomahnic.empanandascounterkt.models.domain.Empanada
 import com.nicomahnic.empanandascounterkt.models.domain.User
-import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
-import javax.inject.Inject
 
 class SaveEmpanadasDialogFragment (
     private val empanadaList: MutableList<Empanada>,

@@ -1,4 +1,4 @@
-package com.nicomahnic.empanandascounterkt.UI.fragments
+package com.nicomahnic.empanandascounterkt.ui.fragments
 
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +10,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.empanandascounterkt.R
-import com.nicomahnic.empanandascounterkt.UI.viewmodels.OrderVM
+import com.nicomahnic.empanandascounterkt.ui.viewmodels.OrderVM
 import com.nicomahnic.empanandascounterkt.adapters.orders.OrdersAdapter
 import com.nicomahnic.empanandascounterkt.databinding.FragmentOrdersBinding
 import com.nicomahnic.empanandascounterkt.models.domain.Order
@@ -28,8 +28,6 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     private var ordersTemp = mutableListOf<Order>()
     private var selectedOrdersTemp = mutableListOf<Order>()
     private val orderVM: OrderVM by viewModels()
-    private val job = Job()
-    private val dispatcherContext = CoroutineScope(Dispatchers.Main + job)
     private lateinit var binding : FragmentOrdersBinding
     private lateinit var adapter: OrdersAdapter
     private lateinit var v: View
@@ -47,16 +45,14 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         adapter.setList(ordersTemp)
         binding.rvOrders.adapter = adapter
 
-        dispatcherContext.launch{
-            dispatcherContext.async{
-                orderVM.getAllOrders().collect { orders ->
-                    orders.forEach{
-                        Log.d("NM", "order => ${it.user} ${it.date}")
-                        ordersTemp.add(0, it)
-                        adapter.notifyItemChanged(0)
-                    }
+        CoroutineScope(Dispatchers.Main).launch{
+            orderVM.getAllOrders().collect { orders ->
+                orders.forEach{
+                    Log.d("NM", "order => ${it.user} ${it.date}")
+                    ordersTemp.add(0, it)
+                    adapter.notifyItemChanged(0)
                 }
-            }.await()
+            }
         }
 
         binding.floatingButton.setOnClickListener(onFloatingClicked)

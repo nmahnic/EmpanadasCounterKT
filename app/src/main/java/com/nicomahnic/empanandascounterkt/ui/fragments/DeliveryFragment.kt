@@ -1,4 +1,4 @@
-package com.nicomahnic.empanandascounterkt.UI.fragments
+package com.nicomahnic.empanandascounterkt.ui.fragments
 
 import android.app.Dialog
 import android.content.Intent
@@ -11,7 +11,7 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.empanandascounterkt.R
-import com.nicomahnic.empanandascounterkt.UI.viewmodels.DeliveryVM
+import com.nicomahnic.empanandascounterkt.ui.viewmodels.DeliveryVM
 import com.nicomahnic.empanandascounterkt.adapters.deliveries.DeliveriesAdapter
 import com.nicomahnic.empanandascounterkt.databinding.FragmentDeliveryBinding
 import com.nicomahnic.empanandascounterkt.models.domain.Delivery

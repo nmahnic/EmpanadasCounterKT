@@ -1,4 +1,4 @@
-package com.nicomahnic.empanandascounterkt.UI.fragments
+package com.nicomahnic.empanandascounterkt.ui.fragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -12,7 +12,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.empanandascounterkt.R
-import com.nicomahnic.empanandascounterkt.UI.viewmodels.HomeVM
+import com.nicomahnic.empanandascounterkt.ui.viewmodels.HomeVM
 import com.nicomahnic.empanandascounterkt.adapters.empanadas.EmpanadasAdapter
 import com.nicomahnic.empanandascounterkt.databinding.FragmentHomeBinding
 import com.nicomahnic.empanandascounterkt.models.domain.Empanada

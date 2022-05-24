@@ -1,4 +1,4 @@
-package com.nicomahnic.empanandascounterkt.UI.fragments
+package com.nicomahnic.empanandascounterkt.ui.fragments
 
 import android.app.Dialog
 import android.os.Bundle
@@ -7,9 +7,8 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.nicomahnic.empanandascounterkt.R
-import com.nicomahnic.empanandascounterkt.UI.viewmodels.UserVM
+import com.nicomahnic.empanandascounterkt.ui.viewmodels.UserVM
 import com.nicomahnic.empanandascounterkt.adapters.users.UsersAdapter
 import com.nicomahnic.empanandascounterkt.databinding.FragmentUserBinding
 import com.nicomahnic.empanandascounterkt.models.domain.User
@@ -24,8 +23,6 @@ class UserFragment : Fragment(R.layout.fragment_user) {
 
     private var usersTemp = mutableListOf<User>()
     private val userVM: UserVM by viewModels()
-    private val job = Job()
-    private val dispatcherContext = CoroutineScope(Dispatchers.Main + job)
     private lateinit var binding : FragmentUserBinding
     private lateinit var adapter: UsersAdapter
 
@@ -45,17 +42,16 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         adapter  = UsersAdapter(usersTemp, onItemSelected)
         binding.rvUsers.adapter = adapter
 
-        dispatcherContext.launch{
-            dispatcherContext.async{
-                userVM.getAllUsers().collect { users ->
-                    users.forEach{
-                        Log.d("NM", "user => ${it.name} ${it.date}")
-                        usersTemp.add(0, it)
-                        adapter.notifyItemChanged(0)
-                    }
+        CoroutineScope(Dispatchers.Main).launch{
+            userVM.getAllUsers().collect { users ->
+                users.forEach {
+                    Log.d("NM", "user => ${it.name} ${it.date}")
+                    usersTemp.add(0, it)
+                    adapter.notifyItemChanged(0)
                 }
-            }.await()
+            }
         }
+
     }
 
     private val onItemSelected = object :  UsersAdapter.ItemListener {

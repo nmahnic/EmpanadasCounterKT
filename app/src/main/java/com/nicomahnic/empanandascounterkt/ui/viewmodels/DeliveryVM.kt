@@ -1,7 +1,6 @@
-package com.nicomahnic.empanandascounterkt.UI.viewmodels
+package com.nicomahnic.empanandascounterkt.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
-import com.nicomahnic.empanandascounterkt.models.domain.Delivery
 import com.nicomahnic.empanandascounterkt.models.domain.Order
 
 class DeliveryVM: ViewModel() {
