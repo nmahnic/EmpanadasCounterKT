@@ -8,6 +8,7 @@ import android.view.animation.Animation
 import android.view.animation.AnimationUtils.loadAnimation
 
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.nicomahnic.empanandascounterkt.R
@@ -104,18 +105,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun saveEmpanadasDialog(){
-        MaterialAlertDialogBuilder(requireContext(), com.google.android.material.R.style.MaterialAlertDialog_Material3)
-            .setTitle("¿Desea guardar la orden?")
-            .setView(R.layout.save_empanada_dialog)
-            .setPositiveButton("Aceptar") { dialog, _ ->
-                val d = dialog as Dialog
-                val comment = d.findViewById<TextInputLayout>(R.id.tvOrderComment)
-                comment.editText?.let { comment ->
-                    homeVM.insertEmpanadas(empanadaList, comment.text.toString().trim())
-                    dialog.dismiss()
-                }
-            }
-            .show()
+        val dialog = SaveEmpanadasDialogFragment(empanadaList, homeVM)
+        val fm: FragmentManager = requireActivity().supportFragmentManager
+        dialog.show(fm,"custom")
     }
 
     private fun setVisibility(){

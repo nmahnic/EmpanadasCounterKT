@@ -4,6 +4,7 @@ import android.util.Log
 import com.nicomahnic.empanandascounterkt.data.dao.EmpanadasDao
 import com.nicomahnic.empanandascounterkt.data.dao.OrdersDao
 import com.nicomahnic.empanandascounterkt.models.domain.Empanada
+import com.nicomahnic.empanandascounterkt.models.domain.User
 import com.nicomahnic.empanandascounterkt.models.room.EmpanadaEntity
 import com.nicomahnic.empanandascounterkt.models.room.OrderEntity
 import java.util.*
@@ -15,8 +16,10 @@ class EmpanadasRepository @Inject constructor(
     private val ordersDao: OrdersDao,
 ) {
 
-    suspend fun insertList(empanadas: List<Empanada>, comment: String){
-        val orderId = ordersDao.insert(OrderEntity(date = Date().time, comment = comment))
+    suspend fun insertList(empanadas: List<Empanada>, comment: String, user: User){
+        val orderId = ordersDao.insert(
+            OrderEntity(date = Date().time, comment = comment, userId = user.id)
+        )
         Log.d("NM", "order -> $orderId")
         empanadas.forEach{ empanada ->
             val empanadaEntity = EmpanadaEntity(

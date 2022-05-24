@@ -6,7 +6,7 @@ import java.util.*
 
 @Parcelize
 data class Order(
-    val user: User,
+    var user: User,
     val date: Date,
     val comment: String,
     var selected: Boolean,
