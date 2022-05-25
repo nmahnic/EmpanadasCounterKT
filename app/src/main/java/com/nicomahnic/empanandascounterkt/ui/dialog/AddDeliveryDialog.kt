@@ -1,4 +1,4 @@
-package com.nicomahnic.empanandascounterkt.ui.fragments
+package com.nicomahnic.empanandascounterkt.ui.dialog
 
 import android.app.Dialog
 import android.os.Bundle
@@ -12,7 +12,7 @@ import com.nicomahnic.empanandascounterkt.databinding.AddDeliveryDialogBinding
 import com.nicomahnic.empanandascounterkt.models.domain.Delivery
 import com.nicomahnic.empanandascounterkt.ui.viewmodels.DeliveryVM
 
-class AddDeliveryDialogFragment (
+class AddDeliveryDialog (
     private val deliveryVM: DeliveryVM,
     private val deliveryDialogListener: DeliveryDialogListener
 ): DialogFragment() {

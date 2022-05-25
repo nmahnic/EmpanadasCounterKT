@@ -18,6 +18,7 @@ import com.nicomahnic.empanandascounterkt.databinding.FragmentHomeBinding
 import com.nicomahnic.empanandascounterkt.models.domain.Empanada
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
+import com.nicomahnic.empanandascounterkt.ui.dialog.SaveEmpanadasDialog
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -105,7 +106,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     }
 
     private fun saveEmpanadasDialog(){
-        val dialog = SaveEmpanadasDialogFragment(empanadaList, homeVM)
+        val dialog = SaveEmpanadasDialog(empanadaList, homeVM)
         val fm: FragmentManager = requireActivity().supportFragmentManager
         dialog.show(fm,"custom")
     }

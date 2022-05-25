@@ -19,6 +19,7 @@ import com.nicomahnic.empanandascounterkt.models.domain.Delivery
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.nicomahnic.empanandascounterkt.models.domain.Order
+import com.nicomahnic.empanandascounterkt.ui.dialog.AddDeliveryDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -84,12 +85,12 @@ class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
     }
 
     private fun addNewDeliveryDialog() {
-        val dialog = AddDeliveryDialogFragment(deliveryVM, deliveryDialogListener)
+        val dialog = AddDeliveryDialog(deliveryVM, deliveryDialogListener)
         val fm: FragmentManager = requireActivity().supportFragmentManager
         dialog.show(fm,"custom")
     }
 
-    private val deliveryDialogListener = object : AddDeliveryDialogFragment.DeliveryDialogListener{
+    private val deliveryDialogListener = object : AddDeliveryDialog.DeliveryDialogListener{
         override fun addDelivery(delivery: Delivery) {
             deliveryList.add(delivery)
             adapter.notifyItemInserted(deliveryList.size - 1)

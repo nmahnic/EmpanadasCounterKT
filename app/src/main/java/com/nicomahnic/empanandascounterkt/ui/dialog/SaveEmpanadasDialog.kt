@@ -1,4 +1,4 @@
-package com.nicomahnic.empanandascounterkt.ui.fragments
+package com.nicomahnic.empanandascounterkt.ui.dialog
 
 import android.app.Dialog
 import android.os.Bundle
@@ -17,7 +17,7 @@ import com.nicomahnic.empanandascounterkt.models.domain.User
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.runBlocking
 
-class SaveEmpanadasDialogFragment (
+class SaveEmpanadasDialog (
     private val empanadaList: MutableList<Empanada>,
     private val homeVM: HomeVM
 ): DialogFragment() {
