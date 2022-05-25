@@ -45,7 +45,7 @@ class UserFragment : Fragment(R.layout.fragment_user) {
         CoroutineScope(Dispatchers.Main).launch{
             userVM.getAllUsers().collect { users ->
                 users.forEach {
-                    Log.d("NM", "user => ${it.name} ${it.date}")
+                    Log.d("NM", "user => ${it} ")
                     usersTemp.add(0, it)
                     adapter.notifyItemChanged(0)
                 }

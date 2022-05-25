@@ -18,6 +18,7 @@
         <entry key="app/src/main/res/drawable/ic_launcher_background.xml" value="0.1565" />
         <entry key="app/src/main/res/layout/activity_initial.xml" value="0.325" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.11481481481481481" />
+        <entry key="app/src/main/res/layout/add_delivery_dialog.xml" value="0.67" />
         <entry key="app/src/main/res/layout/cat_bottomappbar_content.xml" value="0.325" />
         <entry key="app/src/main/res/layout/delivery_dialog.xml" value="0.14114583333333333" />
         <entry key="app/src/main/res/layout/empanada_dialog.xml" value="0.24427083333333333" />

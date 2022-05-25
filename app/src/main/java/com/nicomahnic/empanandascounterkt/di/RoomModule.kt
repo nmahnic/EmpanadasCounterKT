@@ -3,6 +3,7 @@ package com.nicomahnic.empanandascounterkt.di
 import android.content.Context
 import androidx.room.Room
 import com.nicomahnic.empanandascounterkt.data.AppDatabase
+import com.nicomahnic.empanandascounterkt.data.dao.DeliveriesDao
 import com.nicomahnic.empanandascounterkt.data.dao.EmpanadasDao
 import com.nicomahnic.empanandascounterkt.data.dao.OrdersDao
 import com.nicomahnic.empanandascounterkt.data.dao.UsersDao
@@ -45,6 +46,12 @@ object RoomModule {
     @Provides
     fun provideUsersDAO(appDatabase: AppDatabase): UsersDao {
         return appDatabase.usersDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideDeliveriesDAO(appDatabase: AppDatabase): DeliveriesDao {
+        return appDatabase.deliveriesDao()
     }
 
 

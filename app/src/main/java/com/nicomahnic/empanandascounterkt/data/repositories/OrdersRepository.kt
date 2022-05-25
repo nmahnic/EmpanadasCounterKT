@@ -8,7 +8,12 @@ import com.nicomahnic.empanandascounterkt.data.mappers.EmpanadasMapper
 import com.nicomahnic.empanandascounterkt.data.mappers.OrderMapper
 import com.nicomahnic.empanandascounterkt.data.mappers.UserMapper
 import com.nicomahnic.empanandascounterkt.models.domain.Empanada
+import kotlinx.coroutines.async
+import kotlinx.coroutines.coroutineScope
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.flow
+import java.text.SimpleDateFormat
+import java.util.*
 import javax.inject.Inject
 
 
@@ -22,22 +27,27 @@ class OrdersRepository @Inject constructor(
 ) {
 
     suspend fun getAllOrders() = flow {
-        val entityOrders = ordersDao.getAll()
-        val entityEmpanadas = empanadasDao.getAll()
-        val entityUsers = usersDao.getAll()
-        Log.d("NM", "OrderRepository -> $entityOrders")
-        Log.d("NM", "OrderRepository -> $entityEmpanadas")
-        Log.d("NM", "OrderRepository -> $entityUsers")
-        val orders = orderMapper.mapFromEntityList( ordersDao.getAll() )
-        val empanadas = empanadasMapper.mapFromEntityList( empanadasDao.getAll() )
-        val users = userMapper.mapFromEntityList( usersDao.getAll() )
-        orders.forEach { order ->
-            order.empanadaList = empanadas.filter { order.id == it.orderId } as MutableList<Empanada>
-            users.firstOrNull() { order.user.id == it.id }?.let {
-                order.user = it
+        coroutineScope {
+            val first = Date().time
+
+            val entityOrders = async { ordersDao.getAll() }
+            val entityEmpanadas = async { empanadasDao.getAll() }
+            val entityUsers = async { usersDao.getAll() }
+
+            val orders = orderMapper.mapFromEntityList(entityOrders.await())
+            val empanadas = empanadasMapper.mapFromEntityList(entityEmpanadas.await())
+            val users = userMapper.mapFromEntityList(entityUsers.await())
+
+            val time = Date().time - first
+            val sdf = SimpleDateFormat("ss:SS")
+            println("Time spent ${sdf.format(time)} ticks:${time}")
+
+            orders.forEach { order ->
+                order.empanadaList = empanadas.filter { order.id == it.orderId } as MutableList<Empanada>
+                users.firstOrNull() { order.user.id == it.id }?.let { order.user = it }
             }
+            emit(orders)
         }
-        emit(orders)
     }
 
     suspend fun deleteOrder(id: Int){

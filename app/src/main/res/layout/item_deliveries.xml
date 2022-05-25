@@ -7,6 +7,15 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
+    <ImageView
+        android:id="@+id/ivDelivery"
+        android:layout_width="35dp"
+        android:layout_height="35dp"
+        android:src="@drawable/empanada_icon"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <TextView
         android:id="@+id/tvName"
         android:layout_width="0dp"
@@ -17,9 +26,21 @@
         android:maxLines="1"
         android:textSize="18sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/ivDelivery"
         app:layout_constraintTop_toTopOf="parent"
-        tools:text="Carne cortada a Cuchillo" />
+        tools:text="Il nonno pibe" />
+
+    <TextView
+        android:id="@+id/tvNumber"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:ellipsize="end"
+        android:maxEms="15"
+        android:maxLines="1"
+        app:layout_constraintStart_toStartOf="@+id/tvName"
+        app:layout_constraintTop_toBottomOf="@+id/tvName"
+        tools:text="+54 9 11 6708-9981" />
 
     <TextView
         android:id="@+id/tvAddress"
@@ -29,9 +50,8 @@
         android:ellipsize="end"
         android:maxEms="15"
         android:maxLines="1"
-        tools:text="Aranguren 123"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/tvName"
-        app:layout_constraintTop_toBottomOf="@+id/tvName" />
+        app:layout_constraintTop_toBottomOf="@+id/tvNumber"
+        tools:text="Aranguren 123" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

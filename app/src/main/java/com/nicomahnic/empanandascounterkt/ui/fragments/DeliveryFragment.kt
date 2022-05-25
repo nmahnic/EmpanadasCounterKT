@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,18 +20,16 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.textfield.TextInputLayout
 import com.nicomahnic.empanandascounterkt.models.domain.Order
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
 
-    companion object {
-        val deliveryList = mutableListOf(
-            Delivery("Il nonno Pibe", "Avellaneda 96, C1405, CABA", "+54 9 11 6708-9981"),
-            Delivery("Gefahr", "Avellaneda 201, C1405, CABA", "+54 9 11 6708-9981"),
-        )
-    }
-
-    private val viewModel: DeliveryVM by viewModels()
+    private val deliveryList = mutableListOf<Delivery>()
+    private val deliveryVM: DeliveryVM by viewModels()
     private lateinit var binding : FragmentDeliveryBinding
     private lateinit var adapter: DeliveriesAdapter
     private val args: DeliveryFragmentArgs by navArgs()
@@ -56,10 +55,19 @@ class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
     }
 
     private fun initRecyclerView(){
-        val recyclerView = binding.rvDeliveries
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
+        binding.rvDeliveries.layoutManager = LinearLayoutManager(requireContext())
         adapter  = DeliveriesAdapter(deliveryList, onItemSelected)
-        recyclerView.adapter = adapter
+        binding.rvDeliveries.adapter = adapter
+
+        CoroutineScope(Dispatchers.Main).launch{
+            deliveryVM.getAllDeliveries().collect { deliveries ->
+                deliveries.forEach {
+                    Log.d("NM", "delivery => ${it} ")
+                    deliveryList.add(0, it)
+                    adapter.notifyItemChanged(0)
+                }
+            }
+        }
     }
 
     private val onItemSelected = object :  DeliveriesAdapter.ItemListener {
@@ -72,12 +80,23 @@ class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
     }
 
     private val onFloatingClicked = object : View.OnClickListener{
-        override fun onClick(p0: View?) {
-            Log.d("NM", "delivery => onFloatingClicked")
+        override fun onClick(p0: View?) { addNewDeliveryDialog() }
+    }
+
+    private fun addNewDeliveryDialog() {
+        val dialog = AddDeliveryDialogFragment(deliveryVM, deliveryDialogListener)
+        val fm: FragmentManager = requireActivity().supportFragmentManager
+        dialog.show(fm,"custom")
+    }
+
+    private val deliveryDialogListener = object : AddDeliveryDialogFragment.DeliveryDialogListener{
+        override fun addDelivery(delivery: Delivery) {
+            deliveryList.add(delivery)
+            adapter.notifyItemInserted(deliveryList.size - 1)
         }
     }
 
-    fun paymentMethodDeliveryDialog(delivery: Delivery, order: Order){
+    private fun paymentMethodDeliveryDialog(delivery: Delivery, order: Order){
         MaterialAlertDialogBuilder(
             requireContext(),
             com.google.android.material.R.style.MaterialAlertDialog_Material3
@@ -99,7 +118,7 @@ class DeliveryFragment : Fragment(R.layout.fragment_delivery) {
 
     private fun sendWhatsappMessage(delivery: Delivery, paymentMethod: String, order: Order){
         try {
-            val message = viewModel.createMessage(paymentMethod, order)
+            val message = deliveryVM.createMessage(paymentMethod, order)
             val intent = Intent(Intent.ACTION_VIEW)
             intent.data = Uri.parse("http://api.whatsapp.com/send?phone=${delivery.whatsappNumber}&text=$message")
             startActivity(intent)

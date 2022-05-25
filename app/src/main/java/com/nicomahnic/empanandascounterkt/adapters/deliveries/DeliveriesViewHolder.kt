@@ -14,6 +14,9 @@ class DeliveriesViewHolder(view: View): RecyclerView.ViewHolder(view) {
     fun render(delivery: Delivery, position: Int, onClickListener: DeliveriesAdapter.ItemListener){
         binding.tvName.text = delivery.name
         binding.tvAddress.text = delivery.address
+        binding.tvNumber.text = delivery.whatsappNumber
+
+        if(delivery.address.isEmpty()) binding.tvAddress.visibility = View.GONE else View.VISIBLE
 
         itemView.setOnClickListener {
             onClickListener.onBtnClick( delivery ,position )
