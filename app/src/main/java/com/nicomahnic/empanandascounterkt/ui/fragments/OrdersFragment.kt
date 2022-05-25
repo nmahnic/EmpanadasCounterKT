@@ -58,6 +58,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         binding.floatingButton.setOnClickListener(onFloatingClicked)
         binding.floatingEditButton.setOnClickListener(onFloatingEditClicked)
         binding.floatingDeliveryButton.setOnClickListener(onFloatingDeliveryClicked)
+        binding.floatingShareButton.setOnClickListener(onFloatingShareClicked)
 
     }
 
@@ -78,6 +79,15 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
                 Log.d("NM", "order DELIVERY => ${order}")
                 val action = OrdersFragmentDirections.actionOrdersFragmentToDeliveryFragment(order)
                 v.findNavController().navigate(action)
+            }
+        }
+    }
+
+    private val onFloatingShareClicked = object : View.OnClickListener{
+        override fun onClick(p0: View?) {
+            if(selectedOrdersTemp.isNotEmpty()){
+                val order = orderVM.combineOrders(selectedOrdersTemp)
+                Log.d("NM", "order SHARE => ${order}")
             }
         }
     }
@@ -115,9 +125,11 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         if(!orderVM.floatingButtonStatus) {
             binding.floatingEditButton.visibility = View.VISIBLE
             binding.floatingDeliveryButton.visibility = View.VISIBLE
+            binding.floatingShareButton.visibility = View.VISIBLE
         } else {
             binding.floatingEditButton.visibility = View.GONE
             binding.floatingDeliveryButton.visibility = View.GONE
+            binding.floatingShareButton.visibility = View.GONE
         }
     }
 
@@ -125,10 +137,12 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
         if(!orderVM.floatingButtonStatus) {
             binding.floatingEditButton.startAnimation(fromBottom)
             binding.floatingDeliveryButton.startAnimation(fromBottom)
+            binding.floatingShareButton.startAnimation(fromBottom)
             binding.floatingButton.startAnimation(rotateOpen)
         }else{
             binding.floatingEditButton.startAnimation(toBottom)
             binding.floatingDeliveryButton.startAnimation(toBottom)
+            binding.floatingShareButton.startAnimation(toBottom)
             binding.floatingButton.startAnimation(rotateClose)
         }
     }
@@ -136,6 +150,7 @@ class OrdersFragment : Fragment(R.layout.fragment_orders) {
     private fun setClickable(){
         binding.floatingEditButton.isClickable = !orderVM.floatingButtonStatus
         binding.floatingDeliveryButton.isClickable = !orderVM.floatingButtonStatus
+        binding.floatingShareButton.isClickable = !orderVM.floatingButtonStatus
     }
 
 }
